@@ -46,20 +46,22 @@ const CardAdd = () => {
 
   const onSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (isValidCardData()) {
-      setCardItem({
-        nickName: '',
-        cardDesign: cardDesign.cardDesign,
-        cardNumber: cardNumber.cardNumberData,
-        cardExpirationDate: cardExpirationDate.cardExpirationDate,
-        ownerName: ownerName.ownerName,
-        cardSecurityCode: cardSecurityCode.cardNumberData.num1,
-        cardPassword: { password1: cardPassword.cardNumberData.num1, password2: cardPassword.cardNumberData.num2 },
-      })
-      navigate('/card-add-complete')
-    } else {
-      alert('입력한 값을 확인해주세요.')
+
+    if (!isValidCardData()) {
+      return alert('입력한 값을 확인해주세요.')
     }
+
+    setCardItem({
+      nickName: '',
+      cardDesign: cardDesign.cardDesign,
+      cardNumber: cardNumber.cardNumberData,
+      cardExpirationDate: cardExpirationDate.cardExpirationDate,
+      ownerName: ownerName.ownerName,
+      cardSecurityCode: cardSecurityCode.cardNumberData.num1,
+      cardPassword: { password1: cardPassword.cardNumberData.num1, password2: cardPassword.cardNumberData.num2 },
+    })
+
+    return navigate('/card-add-complete')
   }
 
   return (
